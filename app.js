@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
-const user = require('./routes/user-routes');
+const admin = require('./routes/admin-routes');
 
 /* Server settings */
 const app = express();
@@ -16,10 +16,10 @@ app.set('port', 3000);
 const mongo_uri = 'mongodb://localhost:27017/sapere';
 
 /* Server routes */
-app.get('/', (req, res) => {
-    res.send("Hola desde el server")
-});
-app.post('/signin', user.newUser);
+app.post('/register-author', admin.newAuthor);
+app.get('/show-authors', admin.showAllAuthors);
+app.get('/detail/author/:id', admin.detailAuthor);
+app.put('/reform/author/:id', admin.updateAuthor);
 
 /* Start server and database connection */
 mongoose.connect(mongo_uri, {useNewUrlParser: true, useUnifiedTopology: true},(error) => {
