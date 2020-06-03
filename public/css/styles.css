@@ -1,8 +1,63 @@
 :root{
     font-size: 18px;
 }
+body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
 
-.wrapper{
-    margin: 3em 20em;
-    border: 1px solid crimson;
+.cover-section{
+    height: 12em;
+    width: 100%;
+    overflow: hidden;
+    border: none;
+}
+
+.wrapper-form{
+    margin: 0em 5em;
+    border: 1px solid #F2F2F2;
+}
+
+input[type="text"], input[type="date"]{
+    border: none;
+}
+    
+
+.text-cover > img{
+    margin: auto 0;
+}
+
+#pic_profile{
+    border-radius: 50%;
+}
+
+input[type="text"]::placeholder, input[type="date"]::placeholder, #textBio::placeholder{
+    color: #DCDCDC;
+}
+
+.label-data{
+    margin: 3em 0em;
+}
+
+#textBio{
+    width: 100%;
+    border: none;
+    margin-top: -1em;
+}
+
+#name{
+    font-size: 2em;
+    font-weight: 500;
+    padding-left: 0em;
+}
+
+input:focus, input.form-control:focus, #textBio:focus {
+
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
 }
