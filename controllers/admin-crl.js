@@ -1,4 +1,5 @@
 const user = require('../models/author-model');
+const Book = require('../models/book-model');
 
 /* Insert a new user on database */
 exports.insertAuthor = (data) => {
@@ -65,4 +66,25 @@ exports.updateAuthor = (id, data) => {
         });
     });
     
+};
+
+exports.insertBook = (data) => {
+    return new Promise((resolve, reject) => {
+        let modelBook = new Book({
+            title: data.title,
+            pages: data.pages,
+            description: data.description,
+            isbn: data.isbn,
+            author: data.author
+        });
+
+        modelBook.save((book, error) => {
+            if(error){
+                resolve(book);
+            }
+            else{
+                reject(new Error('cannot insert user in database'));
+            }
+        });
+    });
 };

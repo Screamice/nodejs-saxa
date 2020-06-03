@@ -10,11 +10,15 @@ const bookModel = mongoose.Schema({
         type: Number,
         required: true
     },
+    description: {
+        type: String,
+        required: true
+    },
     isbn: {
         type: String,
         required: true
     },
-    autho: {
+    author: {
         type: mongoose.Schema.ObjectId,
         ref: 'author',
         required: true

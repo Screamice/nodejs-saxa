@@ -1,0 +1,31 @@
+extends layout
+
+block scripts
+    script(src="js/register.js")
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" )
+
+block content
+    div(class="container-sm wrapper")
+        form(action="/register-author" method="POST" id="formAuthor")
+            div(class="form-group row")
+                div(class="col")
+                    label(for="name") Name:
+                    input(type="text" class="form-control" id="name" name="name")
+
+                div(class="col")    
+                    label(for="lastname") Lastname:
+                    input(type="text" class="form-control" id="lastname" name="lastname")
+
+            div(class="form-group")
+                label(for="biography") Bio:
+                textarea(name="biography")
+
+            div(class="form-group")
+                label(for="birth") Birthday:
+                input(type="date" class="form-control" id="birth" name="birth")
+
+            div(class="form-group")
+                label(for="nationality") Nationality:
+                input(type="text" class="form-control" id="nationality" name="nationality")
+
+            input(type="submit" value="Save")

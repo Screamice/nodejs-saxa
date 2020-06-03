@@ -1,6 +1,8 @@
 const controller = require('../controllers/admin-crl');
 
 exports.newAuthor = (req, res) => {
+    res.render('register_Author', {title: 'Register new author'});
+
     let data = {
         name: req.body.name,
         lastname: req.body.lastname,
@@ -76,6 +78,34 @@ exports.updateAuthor = (req, res) => {
     .catch(error => {
         res.status(400);
         res.send({message: 'error en la busqueda'});
+        console.error(error);
+    });
+};
+
+exports.newBook = (req, res) => {
+    let data = {
+        title: req.body.title,
+        pages: req.body.pages,
+        description: req.body.description,
+        isbn: req.body.isbn,
+        author: req.body.author
+    };
+
+    if(!data.title || !data.pages || !data.description || !data.isbn || !data.author){
+        return(
+            res.status(400)
+               .send({message: 'la información no es correcta'})
+        );
+    }
+
+    controller.insertBook(data)
+    .then(() => {
+        res.status(200)
+           .send({message: 'se ha registrado el nuevo libro'});
+    })
+    .catch(error => {
+        res.status(400);
+        res.send({message: 'error en el registro'});
         console.error(error);
     });
 };
