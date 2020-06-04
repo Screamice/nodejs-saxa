@@ -11,7 +11,8 @@ exports.insertUser = (data) => {
             lastname: data.lastname,
             user: data.user,
             email: data.email,
-            pwd: bcrypt.hashSync(data.pwd, ROUNDS)
+            pwd: bcrypt.hashSync(data.pwd, ROUNDS),
+            rol: 2
         });
 
         userModel.save(error => {
@@ -20,6 +21,60 @@ exports.insertUser = (data) => {
             }
             else{
                 resolve();
+            }
+        });
+    });
+};
+
+exports.emailLogIn = (data) => {
+    return new Promise((resolve, reject) => {
+        User.findOne({email: data.user}, (error, match) => {
+            if(error){
+                reject(error);
+            }
+
+            if(!match){
+                reject(new Error('wrong user or password'));
+            }
+
+            if(!bcrypt.compareSync(data.pwd, match.pwd)){
+                reject(new Error('wrong user or password'));
+            }
+            else{
+                let response = {
+                    name: match.name,
+                    lastname: match.lastname,
+                    user: match.user,
+                    email: match.email
+                }
+                resolve(response);
+            }
+        });
+    });
+};
+
+exports.usernameLogIn = (data) => {
+    return new Promise((resolve, reject) => {
+        User.findOne({user: data.user}, (error, match) => {
+            if(error){
+                reject(error);
+            }
+
+            if(!match){
+                reject(new Error('wrong user or password'));
+            }
+
+            if(!bcrypt.compareSync(data.pwd, match.pwd)){
+                reject(new Error('wrong user or password'));
+            }
+            else{
+                let response = {
+                    name: match.name,
+                    lastname: match.lastname,
+                    user: match.user,
+                    email: match.email
+                }
+                resolve(response);
             }
         });
     });

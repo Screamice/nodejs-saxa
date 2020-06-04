@@ -14,6 +14,7 @@ router.put('/reform/author/:id', admin.updateAuthor);              // Modificar 
 
 router.post('/register-book', admin.newBook);
 
-router.get('/signup', user.createUser);
+router.post('/signup', user.createUser);
+router.post('/login', user.accountLogIn);
 
 module.exports = router;

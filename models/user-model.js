@@ -20,6 +20,10 @@ const userModel = mongoose.Schema({
     pwd: {
         type: String,
         required: true
+    },
+    rol: {
+        type: Number,
+        require: true,
     }
 });
 
