@@ -1,12 +1,11 @@
-const config = require('./config');
+const key = require('./config');
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const path = require('path');
 
-const admin = require('./routes/admin-routes');
+const routes = require('./routes/routes');
 
 
 /* Server settings */
@@ -26,18 +25,14 @@ app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 //app.use('views', path.join(__dirname, 'views'));
 
 
+
 /* Shortcuts */
-const mongo_uri = `mongodb://${config.mongo_usr}:${config.mongo_pwd}@${config.mongo_host}:${config.mongo_port}/${config.mongo_db}`;
+const mongo_uri = `mongodb://${key.mongo_usr}:${key.mongo_pwd}@${key.mongo_host}:${key.mongo_port}/${key.mongo_db}`;
 
 
 /* Server routes */
-app.get('/show-authors', admin.showAllAuthors);                 // Mostrar todos los autores registrados.
-app.get('/detail/author/:id', admin.detailAuthor);              // Mostrar un autor en particular.
-app.get('/register-author', (req, res) => {res.render('register_Author', {title: 'Register new author'})});
-app.post('/register-author', admin.newAuthor);                  // Agregar un nuevo autor.
-app.put('/reform/author/:id', admin.updateAuthor);              // Modificar los datos de un autor
+app.use('/', routes);
 
-app.post('/register-book', admin.newBook);
 
 
 /* Start server and database connection */
@@ -45,8 +40,8 @@ mongoose.connect(mongo_uri, {useNewUrlParser: true, useUnifiedTopology: true},(e
 
     (error)? console.error(error) : console.log(`Database connection successfully at ${mongo_uri}`);
 
-    app.listen(config.port, (error) => {
+    app.listen(key.port, (error) => {
 
-        (error)? console.error(error) : console.log(`Server listening on port ${config.port}`);
+        (error)? console.error(error) : console.log(`Server listening on port ${key.port}`);
     });
 });
