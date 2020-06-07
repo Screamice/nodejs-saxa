@@ -1,0 +1,12 @@
+extends layout
+
+block scripts
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" )
+
+block content
+    div(class="container-sm")
+        form(action="/login" method="POST")
+            input(type="text" class="form-control" id="user" name="user" placeholder="Username or email" autocomplete="off")
+            input(type="password" class="form-control" id="pwd" name="pwd" placeholder="password" autocomplete="off")
+
+            input(type="submit" id="bSubmit" value="Save" class="btn btn-danger")

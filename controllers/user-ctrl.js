@@ -1,4 +1,5 @@
 const User = require('../models/user-model');
+const Token = require('../models/token-model');
 const bcrypt = require('bcryptjs');
 
 const ROUNDS = 12;
@@ -11,7 +12,7 @@ exports.insertUser = (data) => {
             lastname: data.lastname,
             user: data.user,
             email: data.email,
-            pwd: bcrypt.hashSync(data.pwd, ROUNDS),
+            pwd: data.pwd,
             rol: 2
         });
 
@@ -42,6 +43,7 @@ exports.emailLogIn = (data) => {
             }
             else{
                 let response = {
+                    id: match._id,
                     name: match.name,
                     lastname: match.lastname,
                     user: match.user,
@@ -69,6 +71,7 @@ exports.usernameLogIn = (data) => {
             }
             else{
                 let response = {
+                    id: match._id,
                     name: match.name,
                     lastname: match.lastname,
                     user: match.user,

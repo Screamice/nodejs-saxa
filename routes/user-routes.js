@@ -19,12 +19,15 @@ exports.createUser = (req, res) => {
 
     ctrl.insertUser(data)
     .then(() => {
-        res.status(200)
-           .send({message: 'user has been registered'});
+        res.status(200);
+        res.send({message: 'user has been registered'});
+        res.redirect('/login');
+        res.end();
     })
     .catch(error => {
-        res.status(500)
-           .send({message: 'something went wrong in database'});
+        res.status(500);
+        res.send({message: 'something went wrong in database'});
+        res.end();
 
         console.error(error);
     });
@@ -35,39 +38,76 @@ exports.accountLogIn = (req, res) => {
         user: req.body.user,
         pwd: req.body.pwd
     }
+    // Function to check if user is type username or email.
     const chooseLogin = X => /\S+@\S+/.test(X);
 
+    // Validate the recieved data.
     if(!data.user || !data.pwd){
         return(
             res.status(400)
-               .send({message: 'data-request is not valid 1'})
+               .send({message: 'data-request is not valid'})
         );
     }
 
-    if(chooseLogin(data.user)){
+    if(chooseLogin(data.user)){                 // User logs with email and password.
         ctrl.emailLogIn(data)
         .then(user => {
-            res.status(200)
-               .send(user)
+            res.status(200);
+
+            if(user.rol == 1){
+                res.redirect('/home');
+            }
+            else{
+                res.redirect(`/home/${user.id}`);
+            }
+
+            res.end();
         })
         .catch(error => {
-            res.status(500)
-               .send({message: 'something went wrong in database 2'});
+            res.status(500);
+            res.send({message: 'something went wrong in login'});
+            res.end();
 
             console.error(error);
         });
     }
-    else{
+    else{                                       // User log s with username and password.
         ctrl.usernameLogIn(data)
         .then(user => {
-            res.status(200)
-               .send(user)
+            
+            res.status(200);
+
+            if(user.rol == 1){
+                res.redirect('/home');
+            }
+            else{
+                res.redirect(`/home/${user.id}`);
+            }
+
+            //res.end();
         })
         .catch(error => {
             res.status(500)
-               .send({message: 'something went wrong in database 2'});
+               .send({message: 'something went wrong in login'});
 
             console.error(error);
         });
     }
+};
+
+exports.homeAdmin = (req, res) => {
+    if(req.session.loggedin){
+        res.send({message: `Bienvenido ${req.session.name}`});
+    }
+    else {
+		res.send('access denied');
+	}
+};
+
+exports.homeClient = (req, res) => {
+
+    res.render('homeClient', {title: 'Home'});
+};
+
+exports.logoutSession = (req, res) => {
 };

@@ -6,6 +6,20 @@ const user = require('./user-routes');
 const router = express.Router();
 
 /* --------------------------------------------------  R O U T E S  -------------------------------------------------- */
+
+router.get('/', (req, res) => {res.render('index', {title: 'Inicio'})});
+
+router.get('/login', (req, res) => {res.render('login', {title: 'Log In'})});
+router.post('/login', user.accountLogIn);
+
+router.get('/signup', (req, res) => {res.render('signup', {title: 'Sign Up'})});
+router.post('/signup', user.createUser);
+
+router.get('/home', user.homeAdmin);
+router.get('/home/:id', user.homeClient);
+
+router.get('/logout', user.logoutSession);
+ 
 router.get('/show-authors', admin.showAllAuthors);                 // Mostrar todos los autores registrados.
 router.get('/detail/author/:id', admin.detailAuthor);              // Mostrar un autor en particular.
 router.get('/register-author', (req, res) => {res.render('register_Author', {title: 'Register new author'})});
@@ -14,7 +28,5 @@ router.put('/reform/author/:id', admin.updateAuthor);              // Modificar 
 
 router.post('/register-book', admin.newBook);
 
-router.post('/signup', user.createUser);
-router.post('/login', user.accountLogIn);
 
 module.exports = router;
