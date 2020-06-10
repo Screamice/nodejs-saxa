@@ -1,5 +1,7 @@
 const ctrl = require('../controllers/user-ctrl');
+const mailer = require('../controllers/mailer-ctrl');
 
+/* ROUTE: /signup */
 exports.createUser = (req, res) => {
     let data = {
         name: req.body.name,
@@ -20,7 +22,6 @@ exports.createUser = (req, res) => {
     ctrl.insertUser(data)
     .then(() => {
         res.status(200);
-        res.send({message: 'user has been registered'});
         res.redirect('/login');
         res.end();
     })
@@ -29,17 +30,16 @@ exports.createUser = (req, res) => {
         res.send({message: 'something went wrong in database'});
         res.end();
 
-        console.error(error);
-    });
+        console.error(error.message);
+    }); 
 };
 
+/* ROUTE: /login */
 exports.accountLogIn = (req, res) => {
     let data = {
         user: req.body.user,
         pwd: req.body.pwd
     }
-    // Function to check if user is type username or email.
-    const chooseLogin = X => /\S+@\S+/.test(X);
 
     // Validate the recieved data.
     if(!data.user || !data.pwd){
@@ -49,50 +49,29 @@ exports.accountLogIn = (req, res) => {
         );
     }
 
-    if(chooseLogin(data.user)){                 // User logs with email and password.
-        ctrl.emailLogIn(data)
-        .then(user => {
-            res.status(200);
+    ctrl.usernameSignIn(data)
+    .then(user => {                                             // LogIn data is correct
+        res.status(200);
 
-            if(user.rol == 1){
-                res.redirect('/home');
-            }
-            else{
-                res.redirect(`/home/${user.id}`);
-            }
+        //req.session.islogged = true;
+        req.session.userID = user.id;
 
-            res.end();
-        })
-        .catch(error => {
-            res.status(500);
-            res.send({message: 'something went wrong in login'});
-            res.end();
+        if(user.rol == 1){
+            res.redirect('/home');
+        }
+        else{
+            res.redirect(`/home/${user.id}`);
+        }
 
-            console.error(error);
-        });
-    }
-    else{                                       // User log s with username and password.
-        ctrl.usernameLogIn(data)
-        .then(user => {
-            
-            res.status(200);
+        res.end();
+    })
+    .catch(error => {                                           // LogIn data is invalid
+        res.status(500);
+        res.send({message: 'something went wrong in login'});
+        res.end();
 
-            if(user.rol == 1){
-                res.redirect('/home');
-            }
-            else{
-                res.redirect(`/home/${user.id}`);
-            }
-
-            //res.end();
-        })
-        .catch(error => {
-            res.status(500)
-               .send({message: 'something went wrong in login'});
-
-            console.error(error);
-        });
-    }
+        console.error(error);
+    });
 };
 
 exports.homeAdmin = (req, res) => {
@@ -110,4 +89,7 @@ exports.homeClient = (req, res) => {
 };
 
 exports.logoutSession = (req, res) => {
+    req.session.destroy(error => {
+        (error)? console.error(error) : res.redirect('/');
+    });
 };

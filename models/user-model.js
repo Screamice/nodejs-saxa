@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const Token = require('./token-model');
-const crypto = require('crypto');
-const mailer = require('../controllers/mailer');
 
 const ROUNDS = 12;
 
@@ -36,8 +33,6 @@ const userSchema = mongoose.Schema({
         type: Number,
         require: true,
     },
-    pwdResetToken: String,
-    pwdResetTokenExpires: Date,
     verified: {
         type: Boolean,
         default: false
@@ -51,9 +46,5 @@ userSchema.pre('save', function(next){
 
     next();
 });
-
-userSchema.methods.validPassword = function(pwd){
-    return bcrypt.compareSync(pwd, this.pwd);
-}
 
 module.exports = mongoose.model('User', userSchema);

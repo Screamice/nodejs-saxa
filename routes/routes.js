@@ -2,6 +2,7 @@
 const express = require('express');
 const admin = require('./admin-routes');
 const user = require('./user-routes');
+const midd = require('../controllers/session-ctrl');
 
 const router = express.Router();
 
@@ -9,14 +10,14 @@ const router = express.Router();
 
 router.get('/', (req, res) => {res.render('index', {title: 'Inicio'})});
 
-router.get('/login', (req, res) => {res.render('login', {title: 'Log In'})});
+router.get('/login', midd.isLogged,(req, res) => {res.render('login', {title: 'Log In'})});
 router.post('/login', user.accountLogIn);
 
 router.get('/signup', (req, res) => {res.render('signup', {title: 'Sign Up'})});
 router.post('/signup', user.createUser);
 
 router.get('/home', user.homeAdmin);
-router.get('/home/:id', user.homeClient);
+router.get('/home/:id', midd.authenticate, user.homeClient);
 
 router.get('/logout', user.logoutSession);
  
