@@ -1,8 +1,7 @@
 const User = require('../models/user-model');
+const Token = require('../models/token-model');
 const bcrypt = require('bcryptjs');
 const mailer = require('./mailer-ctrl');
-
-const ROUNDS = 12;
 
 /* Inser a new user in database */
 exports.insertUser = (data) => {
@@ -76,3 +75,28 @@ exports.usernameSignIn = (data) => {
         });
     });
 };  // 1591562329821
+
+exports.setVerification = (token) => {
+    
+    return new Promise((resolve, reject) => {
+
+        Token.findOne({token: token}, (error, match) => {
+            
+            if(error){
+                reject(error);
+            }
+
+            if(!match){
+                reject(new Error('token not valid'));
+            }
+
+            User.findByIdAndUpdate({_id: match.userID}, {$set: {verified: true}})
+            .then(() => {
+                resolve();
+            })
+            .catch(error => {
+                reject(error);
+            })
+        });
+    });
+}

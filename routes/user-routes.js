@@ -93,3 +93,16 @@ exports.logoutSession = (req, res) => {
         (error)? console.error(error) : res.redirect('/');
     });
 };
+
+exports.verifyAccount = (req, res) => {
+    
+    ctrl.setVerification(req.query.token)
+    .then(() => {
+        res.status(200).redirect('/login');
+        res.end();
+    })
+    .catch(error => {
+        console.error(error.message);
+        res.status(500).send({message: 'no existe el token de activacion'})
+    })
+};

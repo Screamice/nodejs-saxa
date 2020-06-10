@@ -16,6 +16,8 @@ router.post('/login', user.accountLogIn);
 router.get('/signup', (req, res) => {res.render('signup', {title: 'Sign Up'})});
 router.post('/signup', user.createUser);
 
+router.get('/verification', user.verifyAccount);
+
 router.get('/home', user.homeAdmin);
 router.get('/home/:id', midd.authenticate, user.homeClient);
 
