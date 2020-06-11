@@ -1,8 +1,12 @@
 extends layout
 
-block content
-    h1 Bienvenido
+block scripts
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" )
 
-    ul
-        li 
-            a(href="/logout") Cerrar Sesión
+block content
+    h3 Buscar libro
+    form(action="/search-book")
+        div(class="input-group mb-3")
+            input(type="text" class="form-control" id="input-search-book" placeholder="Introduzca el nombre del libro" aria-label="Introduzca el nombre del libro" aria-describedby="button-addon2")
+            div(class="input-group-append")
+                button(class="btn btn-outline-secondary" type="button" id="button-addon2") Buscar
