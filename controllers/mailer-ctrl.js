@@ -4,16 +4,7 @@ const Token = require('../models/token-model');
 const crypto = require('crypto');
 const KEYS = require('../config');
 
-let appAccount = nodemailer.createTestAccount();
 
-/**
- * host: 'smtp.ethereal.email',
-    port: 587,
-    auth: {
-        user: 'jerrold5@ethereal.email',
-        pass: 'c9c5BAJtY1ccwnX6EC'
-    }
- */
 let accountMailer = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
