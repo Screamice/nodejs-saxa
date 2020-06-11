@@ -12,8 +12,18 @@ const PORT = process.env.SERVER_PORT || 4000;
 
 const SECRET_KEY = process.env.SECRET_KEY;
 
+const GOOGLE_ID = process.env.GOOGLE_ID;
+const GOOGLE_SECRET = process.env.GOOGLE_SECRET;
+const GOOGLE_REFRESH = process.env.GOOGLE_REFRESH;
+const GOOGLE_ACCESS = process.env.GOOGLE_ACCESS;
+
+
 module.exports = {
     PORT,
     SECRET_KEY,
-    MONGO_URI
+    MONGO_URI,
+    GOOGLE_ID,
+    GOOGLE_SECRET,
+    GOOGLE_REFRESH,
+    GOOGLE_ACCESS
 }

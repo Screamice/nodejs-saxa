@@ -1,15 +1,29 @@
 const nodemailer = require('nodemailer');
+const xoauth2 = require('xoauth2');
 const Token = require('../models/token-model');
 const crypto = require('crypto');
+const KEYS = require('../config');
 
 let appAccount = nodemailer.createTestAccount();
 
-let accountMailer = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
+/**
+ * host: 'smtp.ethereal.email',
     port: 587,
     auth: {
         user: 'jerrold5@ethereal.email',
         pass: 'c9c5BAJtY1ccwnX6EC'
+    }
+ */
+let accountMailer = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+        type: 'OAuth2',
+        user: 'test.personal.dev@gmail.com',
+        clientId: KEYS.GOOGLE_ID,
+        clientSecret: KEYS.GOOGLE_SECRET,
+        refreshToken: KEYS.GOOGLE_REFRESH
     }
 });
 
