@@ -29,7 +29,7 @@ app.use(cookieParser());
 
 /* -----------------------------------------  V I E W S   S E T T I N G S  ----------------------------------------- */
 app.set('view engine', 'pug');
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public/'));
 
 
 /* ------------------------------------------  S E R V E R   R O U T E S  ------------------------------------------ */

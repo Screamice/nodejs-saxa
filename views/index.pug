@@ -1,6 +1,24 @@
-h1 Hola este es el inicio
-    ul
-        li 
-            a(href="/login") Iniciar Sesión
-        li
-            a(href="/signup") Registrarse
+doctype html
+html
+    head
+        meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        meta(charset='utf-8')
+        title Creators
+        link(rel="stylesheet" type="text/css" href="css/styles.css")
+        link(rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap")
+    
+    body
+        div(class="container-sm")
+            form
+                div(class="form-group title")
+                    p(class="form-title") Creators SignIn
+
+                div(class="form-group")
+                    label(for="txtUser") User or email
+                    input(type="text" class="form-control" id="txtUser" autocomplete="false")
+                
+                div(class="form-group")
+                    label(for="txtPwd") Password
+                    input(type="password" class="form-control" id="txtPwd")
+
+                button(type="submit" class="btn btn-primary") SignIn
