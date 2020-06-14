@@ -1,7 +1,12 @@
+:root{
+    --light-dark: #757575;
+    --main-dark: #212121;
+}
+
 body{
     padding: 0;
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 18px;
 }
 
@@ -11,6 +16,7 @@ body{
     justify-content: center;
     height: 100vh;
     width: 100vw;
+    background-color: #F4F4F4;
 }
 
 .form-box{
@@ -18,32 +24,177 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 35vw;
+    width: 50vw;
     padding: 5px;
-    border: 1px solid #291720;
+    border: 1px solid forestgreen;
 }
 
+.img-login{
+    border: 1px solid red;
+    width: 50vw;
+}
+/*
 .form-title{
     border-radius: 10px 10px 0px 0px;
     width: inherit;
     max-width: 100%;
     text-align: center;
-    background-color: #291720;
-    color: #FFFFFF;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 28px;
 }
 
 .form-container{
-    border: 1px solid #291720;
-    width: inherit;
+    background-color: #F4FAFC;
+    width: 18em;
     max-width: 100%;
-    padding: 1.1rem -1.1rem ;
+    padding: 3em;
     display: flex;
+    flex-direction: column;
+    text-align: center;
     align-items: center;
     justify-content: center;
+    position: relative;
+    
 }
 
-input,label{
-    display: block;
+.input-login{
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid var(--light-dark);
+    text-align: center;
+    font-weight: 300;
+    font-size: 0.9em;
+    padding: 0.5em 0;
+    margin: 1.5em 0;
+    width: inherit;
 }
+
+.input-login:active, .input-login:focus{
+    outline: none;
+}
+
+.button{
+    margin: 0.6em 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+}
+
+.btnSubmit{
+    background-color: #000000;
+    color: #FAFBFD;
+    padding: 0.7em 1.8em;
+    border-radius: 40px;
+    border: none;
+}
+
+.btnSignUp{
+    text-decoration: none;
+    color: #000000;
+}
+
+.txtRecoverPwd{
+    margin: 1em 0 1em 0;
+    color: #000000;
+    font-size: 0.8em;
+}
+*/
+
+
+
+
+
+
+
+.custom-form {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 0.9;
+    width: 30em;
+    max-width: 100%;
+    background: #fff;
+    padding: 40px 10px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid crimson;
+}
+
+.custom-form .form-group {
+    position: relative;
+    padding-top: 16px;
+    margin-bottom: 16px;
+    width: 70%;
+}
+
+.custom-form .form-group .animated-label {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    width: 100%;
+    font-weight: 300;
+    opacity: 0.5;
+    cursor: text;
+    transition: 0.2s ease all;
+    margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+  .custom-form .form-group .animated-label:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 45%;
+    height: 2px;
+    width: 10px;
+    visibility: hidden;
+    background-color: var(--main-dark);
+    transition: 0.2s ease all;
+  }
+  .custom-form .form-group.not-empty .animated-label {
+    top: 0;
+    font-size: 12px;
+  }
+  .custom-form .form-group .form-control {
+    width: 70%;
+    min-width: inherit;
+    position: relative;
+    z-index: 1;
+    border-radius: 0;
+    border-width: 0 0 1px;
+    border-bottom-color: rgba(0, 0, 0, 0.25);
+    height: auto;
+    padding: 3px 0 5px;
+    text-align: center;
+    font-weight: 300;
+    font-size: 0.9em;
+  }
+  .custom-form .form-group .form-control:focus {
+    box-shadow: none;
+    /*border-bottom-color: rgba(0, 0, 0, 0.12);*/
+    outline: none;
+    border: none;
+  }
+
+  .custom-form .form-group .form-control:active {
+    border: none;
+  }
+
+  .custom-form .form-group .form-control:focus ~ .animated-label {
+    top: 0;
+    opacity: 1;
+    color: var(--main-dark);
+    font-size: 12px;
+  }
+  .custom-form .form-group .form-control:focus ~ .animated-label:after {
+    visibility: visible;
+    width: 100%;
+    left: 0;
+  }
+  
