@@ -1,37 +1,181 @@
 :root{
+    --light-dark: #757575;
+    --main-dark: #212121;
+    --main-light-dark: #424242
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
     font-size: 18px;
 }
-body{
+
+.wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100vh;
     width: 100vw;
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
+    background-color: #F4F4F4;
 }
 
-.container-sm > form{
-    margin: auto auto;
-    border: 1px solid purple;
-    width: 25em;
+.form-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    padding: 5px;
 }
 
-.form-group{
-    margin: 0;
-    padding: 0;
-    /*border: 1px solid crimson;*/
+.img-login{
+    /*border: 1px solid red;*/
+    width: 50vw;
 }
 
-.title{
-    background-color: black;
-    border-radius: 5px 5px 0px 0px;
-    color: whitesmoke;
+.form-title{
+    border-radius: 10px 10px 0px 0px;
+    width: inherit;
+    max-width: 100%;
     text-align: center;
+    font-weight: 400;
+    font-size: 28px;
 }
 
-input, label{
-    display: block;
+.custom-form {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 0.9;
+    width: 25em;
+    max-width: 100%;
+    background: #fff;
+    padding: 40px 10px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
-input{
-    width: 95%;
-    height: 2em;
+.custom-form .form-group {
+    position: relative;
+    padding-top: 2em;
+    margin-bottom: 16px;
+    width: 80%;
+}
+
+.custom-form .form-group .animated-label {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    width: 100%;
+    font-weight: 300;
+    opacity: 0.5;
+    cursor: text;
+    transition: 0.2s ease all;
+    margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+  .custom-form .form-group .animated-label:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 45%;
+    height: 2px;
+    width: 10px;
+    visibility: hidden;
+    background-color: var(--main-dark);
+    transition: 0.2s ease all;
+  }
+  .custom-form .form-group.not-empty .animated-label {
+    top: 0;
+    font-size: 12px;
+  }
+  .custom-form .form-group .form-control {
+    width: 100%;
+    min-width: inherit;
+    position: relative;
+    z-index: 1;
+    border-radius: 0;
+    border-width: 0 0 1px;
+    border-bottom-color: rgba(0, 0, 0, 0.25);
+    height: auto;
+    padding: 3px 0 5px;
+    text-align: center;
+    font-weight: 300;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+  }
+  .custom-form .form-group .form-control:focus {
+    box-shadow: none;
+    /*border-bottom-color: rgba(0, 0, 0, 0.12);*/
+    outline: none;
+    border: none;
+  }
+
+  .custom-form .form-group .form-control:active {
+    border: none;
+  }
+
+  .custom-form .form-group .form-control:focus ~ .animated-label {
+    top: 0;
+    opacity: 1;
+    color: var(--main-dark);
+    font-size: 12px;
+  }
+  .custom-form .form-group .form-control:focus ~ .animated-label:after {
+    visibility: visible;
+    width: 100%;
+    left: 0;
+  }
+  
+  .btns{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.7em;
+  }
+
+.btn-sign{
+    margin: 0.6em 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+}
+
+.btnSubmit{
+    background-color:var(--main-dark);
+    color: #FAFBFD;
+    padding: 0.7em 1.8em;
+    border-radius: 40px;
+    border: none;
+    width: 9em;
+}
+
+.btnSubmit:hover{
+    background-color: var(--main-light-dark);
+}
+
+.btnSignUp{
+    text-decoration: none;
+    color:var(--main-dark);
+    padding-top: 0.8em;
+}
+
+
+.txtRecoverPwd{
+    margin: 1em 0 1em 0;
+    color:var(--main-dark);
+    font-size: 0.8em;
+}
+
+.btnSignUp:hover, .txtRecoverPwd:hover{
+    font-weight: 500;
 }

@@ -4,9 +4,17 @@ block scripts
     link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" )
 
 block content
-    div(class="container-sm")
-        form(action="/login" method="POST")
-            input(type="text" class="form-control" id="user" name="user" placeholder="Username or email" autocomplete="off")
-            input(type="password" class="form-control" id="pwd" name="pwd" placeholder="password" autocomplete="off")
-
-            input(type="submit" id="bSubmit" value="Save" class="btn btn-danger")
+    div(class="wrapper")
+        div(class="form-box")
+            form(class="form-container custom-form" action="" method="POST")
+                div(class="form-group" ng-class="{'not-empty': userName.length}")
+                    input(type="text" class="form-control" name="user"  id="user" ng-model="userName" placeholder="Username or email address")
+                    label(for="user" class="animated-label")
+                div(class="form-group" ng-class="{'not-empty': passWord.length}")
+                    input(type="password" class="form-control" name="pass"  id="pass" placeholder="Password" ng-model="passWord")
+                    label(for="pass" class="animated-label")
+                div(class="btns form-group")
+                    button(class="btn-sign btnSubmit" type="submit") Log In
+                    a(class="btn-sign btnSignUp" href="#") Sign Up
+                    a(class="btn-recover txtRecoverPwd" href="#") Forgot your password?
+        div(class="img-login")

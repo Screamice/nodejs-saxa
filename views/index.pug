@@ -5,20 +5,20 @@ html
         meta(charset='utf-8')
         title Creators
         link(rel="stylesheet" type="text/css" href="css/styles.css")
-        link(rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap")
+        link(href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap" rel="stylesheet")
     
     body
-        div(class="container-sm")
-            form
-                div(class="form-group title")
-                    p(class="form-title") Creators SignIn
-
-                div(class="form-group")
-                    label(for="txtUser") User or email
-                    input(type="text" class="form-control" id="txtUser" autocomplete="false")
-                
-                div(class="form-group")
-                    label(for="txtPwd") Password
-                    input(type="password" class="form-control" id="txtPwd")
-
-                button(type="submit" class="btn btn-primary") SignIn
+        div(class="wrapper")
+            div(class="form-box")
+                form(class="form-container custom-form" action="/login" method="POST")
+                    div(class="form-group" ng-class="{'not-empty': userName.length}")
+                        input(type="text" class="form-control" name="user"  id="user" ng-model="userName" placeholder="Username or email address")
+                        label(for="user" class="animated-label")
+                    div(class="form-group" ng-class="{'not-empty': passWord.length}")
+                        input(type="password" class="form-control" name="pass"  id="pass" placeholder="Password" ng-model="passWord")
+                        label(for="pass" class="animated-label")
+                    div(class="btns form-group")
+                        button(class="btn-sign btnSubmit" type="submit") Log In
+                        a(class="btn-sign btnSignUp" href="#") Sign Up
+                        a(class="btn-recover txtRecoverPwd" href="#") Forgot your password?
+            div(class="img-login")
