@@ -15,10 +15,26 @@ html
                         input(type="text" class="form-control" name="user"  id="user" ng-model="userName" placeholder="Username or email address")
                         label(for="user" class="animated-label")
                     div(class="form-group" ng-class="{'not-empty': passWord.length}")
-                        input(type="password" class="form-control" name="pass"  id="pass" placeholder="Password" ng-model="passWord")
+                        input(type="password" class="form-control" name="pwd"  id="pass" placeholder="Password" ng-model="passWord")
                         label(for="pass" class="animated-label")
                     div(class="btns form-group")
                         button(class="btn-sign btnSubmit" type="submit") Log In
-                        a(class="btn-sign btnSignUp" href="#") Sign Up
-                        a(class="btn-recover txtRecoverPwd" href="#") Forgot your password?
+                        a(class="btn-sign btnSignUp" href="/SignUp") Sign Up
+                        a(class="btn-recover txtRecoverPwd" href="/") Forgot your password?
             div(class="img-login")
+                h1(class="hero-title") Creators
+                p(class="hero-title-description") Find the best seller books
+            
+            div(class="form-box signup-box")
+                form(class="form-container custom-form" action="/signup" method="POST")
+                    div(class="form-group" ng-class="{'not-empty': userName.length}")
+                        input(type="text" class="form-control" name="user"  id="user" ng-model="userName" placeholder="Username or email address")
+                        label(for="user" class="animated-label")
+                    div(class="form-group" ng-class="{'not-empty': passWord.length}")
+                        input(type="password" class="form-control" name="pwd"  id="pass" placeholder="Password" ng-model="passWord")
+                        label(for="pass" class="animated-label")
+                    div(class="btns form-group")
+                        button(class="btn-sign btnSubmit" type="submit") Log In
+                        a(class="btn-sign btnSignUp" href="/SignUp") Sign Up
+                        a(class="btn-recover txtRecoverPwd" href="/") Forgot your password?
+        script(src="js/index-actions.js")
