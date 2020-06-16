@@ -4,12 +4,13 @@ html
         meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
         meta(charset='utf-8')
         title Creators
+        script(src="js/index-actions.js")
         link(rel="stylesheet" type="text/css" href="css/styles.css")
         link(href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap" rel="stylesheet")
     
     body
         div(class="wrapper")
-            div(class="form-box")
+            div(class="form-box login-box")
                 form(class="form-container custom-form" action="/login" method="POST")
                     div(class="form-group" ng-class="{'not-empty': userName.length}")
                         input(type="text" class="form-control" name="user"  id="user" ng-model="userName" placeholder="Username or email address")
@@ -19,22 +20,31 @@ html
                         label(for="pass" class="animated-label")
                     div(class="btns form-group")
                         button(class="btn-sign btnSubmit" type="submit") Log In
-                        a(class="btn-sign btnSignUp" href="/SignUp") Sign Up
+                        a(class="btn-sign btnSignUp" id="btnSignUp" href="/") Sign Up
                         a(class="btn-recover txtRecoverPwd" href="/") Forgot your password?
             div(class="img-login")
                 h1(class="hero-title") Creators
                 p(class="hero-title-description") Find the best seller books
             
             div(class="form-box signup-box")
-                form(class="form-container custom-form" action="/signup" method="POST")
-                    div(class="form-group" ng-class="{'not-empty': userName.length}")
-                        input(type="text" class="form-control" name="user"  id="user" ng-model="userName" placeholder="Username or email address")
+                form(class="form-container custom-form box-form" action="/signup" method="POST")
+                    div(class="form-group group-signup")
+                        input(type="text" class="form-control" name="name"  id="name" ng-model="name" placeholder="Name")
+                        label(for="name" class="animated-label")
+                    div(class="form-group group-signup")
+                        input(type="text" class="form-control" name="lastname"  id="lastname" ng-model="lastname" placeholder="Lastname")
+                        label(for="lastname" class="animated-label")
+                    div(class="form-group group-signup")
+                        input(type="text" class="form-control" name="user"  id="user" ng-model="user" placeholder="User")
                         label(for="user" class="animated-label")
-                    div(class="form-group" ng-class="{'not-empty': passWord.length}")
-                        input(type="password" class="form-control" name="pwd"  id="pass" placeholder="Password" ng-model="passWord")
-                        label(for="pass" class="animated-label")
-                    div(class="btns form-group")
+                    div(class="form-group group-signup")
+                        input(type="text" class="form-control" name="email"  id="email" ng-model="email" placeholder="Email")
+                        label(for="email" class="animated-label")
+                    div(class="form-group group-signup")
+                        input(type="text" class="form-control" name="password"  id="password" ng-model="password" placeholder="Password")
+                        label(for="password" class="animated-label")
+                    div(class="form-group group-signup")
+                        input(type="text" class="form-control" name="conf-password"  id="conf-password" ng-model="conf-password" placeholder="Confirm password")
+                        label(for="conf-password" class="animated-label")
+                    div(class="btns form-group group-signup")
                         button(class="btn-sign btnSubmit" type="submit") Log In
-                        a(class="btn-sign btnSignUp" href="/SignUp") Sign Up
-                        a(class="btn-recover txtRecoverPwd" href="/") Forgot your password?
-        script(src="js/index-actions.js")
