@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 
 const cookieParser = require('cookie-parser');
 
-const routes = require('./routes/routes');
+const routes = require('./au/routes/routes');
 
 
 /* ----------------------------------------  S E R V E R   S E T T I N G S  ---------------------------------------- */

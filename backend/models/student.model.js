@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const ROUNDS = 12;
-
-const userSchema = mongoose.Schema({
+const studentSchema = mongoose.Schema({
+    dni: {
+        type: String,
+        trim: true,
+        required: [true, 'DNI field must be required'],
+        unique: true
+    },
     name: {
         type: String,
         trim: true,
@@ -13,10 +17,6 @@ const userSchema = mongoose.Schema({
         type: String,
         trim: true,
         required: [true, 'Lastname field must be required']
-    },
-    user: {
-        type: String,
-        required: true
     },
     email: {
         type: String,
@@ -28,23 +28,13 @@ const userSchema = mongoose.Schema({
     pwd: {
         type: String,
         required: [true, 'Password field must be required']
-    },
-    rol: {
-        type: Number,
-        require: true,
-    },
-    verified: {
-        type: Boolean,
-        default: false
     }
 });
 
-userSchema.pre('save', function(next){
+userSchema.pre('save', (next) => {
     if(this.isModified('pwd')){
-        this.pwd = bcrypt.hashSync(this.pwd, ROUNDS);
+        this.pwd = bcrypt.hashSync(this.pwd, 12);
     }
-
-    next();
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model(studentSchema);
