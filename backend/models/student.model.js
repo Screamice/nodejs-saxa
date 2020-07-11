@@ -31,10 +31,11 @@ const studentSchema = mongoose.Schema({
     }
 });
 
-userSchema.pre('save', (next) => {
+studentSchema.pre('save', function(next) {
     if(this.isModified('pwd')){
         this.pwd = bcrypt.hashSync(this.pwd, 12);
     }
+    next();
 });
 
-module.exports = mongoose.model(studentSchema);
+module.exports = mongoose.model('Student', studentSchema);

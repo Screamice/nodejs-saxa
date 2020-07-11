@@ -1,4 +1,4 @@
-require('../au/node_modules/dotenv').config({path: '../.env'});
+require('dotenv').config({path: '../.env'});
 const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
