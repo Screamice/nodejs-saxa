@@ -27,4 +27,8 @@ exports.Student = Database.define('student', {
         type: DataTypes.STRING(300),
         allowNull: true
     }
+},
+{
+    timestamps: false,
+    freezeTableName: true
 });

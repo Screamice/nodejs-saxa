@@ -11,4 +11,8 @@ exports.Category = Database.define('category', {
         type: DataTypes.STRING(500),
         allowNull: false
     }
+},
+{
+    timestamps: false,
+    freezeTableName: true
 });

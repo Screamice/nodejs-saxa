@@ -20,4 +20,8 @@ exports.Country = Database.define('country', {
             deferrable: Deferrable.INITIALLY_IMMEDIATE
         }
     }
+},
+{
+    timestamps: false,
+    freezeTableName: true
 });

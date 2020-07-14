@@ -11,4 +11,8 @@ exports.Languaje = Database.define('languaje', {
         type: DataTypes.STRING(300),
         allowNull: false
     }
+},
+{
+    timestamps: false,
+    freezeTableName: true
 });

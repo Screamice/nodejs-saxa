@@ -33,4 +33,8 @@ exports.Author = Database.define('author', {
         type: DataTypes.STRING(300),
         allowNull: true
     }
+},
+{
+    timestamps: false,
+    freezeTableName: true
 });

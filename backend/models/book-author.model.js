@@ -22,4 +22,8 @@ exports.Book_Author = Database.define('book_author', {
             deferrable: Deferrable.INITIALLY_IMMEDIATE
         }
     }
+},
+{
+    timestamps: false,
+    freezeTableName: true
 });

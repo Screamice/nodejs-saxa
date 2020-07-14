@@ -15,4 +15,8 @@ exports.Editorial = Database.define('editorial', {
         type: DataTypes.STRING(500),
         allowNull: true
     }
+},
+{
+    timestamps: false,
+    freezeTableName: true
 });

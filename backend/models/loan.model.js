@@ -34,4 +34,8 @@ exports.Loan = Database.define('loan', {
         type: DataTypes.DATE,
         allowNull: false
     }
+},
+{
+    timestamps: false,
+    freezeTableName: true
 });

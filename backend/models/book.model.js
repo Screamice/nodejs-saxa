@@ -57,4 +57,8 @@ exports.Book = Database.define('book', {
         type: DataTypes.DATE,
         allowNull: false
     }
+},
+{
+    timestamps: false,
+    freezeTableName: true
 });
