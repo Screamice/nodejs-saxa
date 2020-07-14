@@ -1,41 +1,30 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+const { DataTypes, Deferrable } = require('sequelize');
+const { Database } = require('./config.connection');
 
-const studentSchema = mongoose.Schema({
-    dni: {
-        type: String,
-        trim: true,
-        required: [true, 'DNI field must be required'],
-        unique: true
+exports.Student = Database.define('student', {
+    stu_dni: {
+        type: DataTypes.STRING(100),
+        allowNull: false,
+        primaryKey: true
     },
-    name: {
-        type: String,
-        trim: true,
-        required: [true, 'Name field must be required']
+    stu_fname: {
+        type: DataTypes.STRING(300),
+        allowNull: false
     },
-    lastname: {
-        type: String,
-        trim: true,
-        required: [true, 'Lastname field must be required']
+    stu_lname: {
+        type: DataTypes.STRING(300),
+        allowNull: false
     },
-    email: {
-        type: String,
-        trim: true,
-        required: [true, 'Email field must be required'],
-        lowercase: true,
-        unique: true
+    stu_email: {
+        type: DataTypes.STRING(300),
+        allowNull: false
     },
-    pwd: {
-        type: String,
-        required: [true, 'Password field must be required']
+    stu_password: {
+        type: DataTypes.STRING(1000),
+        allowNull: false
+    },
+    stu_imageurl: {
+        type: DataTypes.STRING(300),
+        allowNull: true
     }
 });
-
-studentSchema.pre('save', function(next) {
-    if(this.isModified('pwd')){
-        this.pwd = bcrypt.hashSync(this.pwd, 12);
-    }
-    next();
-});
-
-module.exports = mongoose.model('Student', studentSchema);
