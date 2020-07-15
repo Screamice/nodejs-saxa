@@ -68,3 +68,29 @@ exports.new_editorial = (req, res) => {
         res.json({action: 'failed', message: 'data request is not correct'});
     }
 };
+
+exports.new_author = (req, res) => {
+    let author = {
+        fname: req.body.fname,
+        lname: req.body.lname,
+        bio: req.body.bio,
+        from: req.body.from,
+        image: null
+    };
+
+    if(author.fname && author.lname && author.bio && author.from){
+        ctrl.insert_auth(author)
+        .then(() => {
+            res.status(200);
+            res.json({action: 'success', message: 'author has been registered'});
+        })
+        .catch(error => {
+            res.status(500);
+            res.json({action: 'failed', message: error.message});
+        });
+    }
+    else{
+        res.status(400);
+        res.json({action: 'failed', message: 'data request is not correct'});
+    }
+};

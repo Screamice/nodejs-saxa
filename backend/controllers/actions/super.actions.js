@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const { Student } = require('../../models/student.model');
 const { Category } = require('../../models/category.model');
 const { Editorial } = require('../../models/editorial.model');
+const { Author } = require('../../models/author.model');
 
 exports.insert = (student) => {
     return new Promise( async (resolve, reject) => {
@@ -38,6 +39,20 @@ exports.insert_edit = (editorial) => {
             edit_name: editorial.name,
             edit_website: editorial.website,
             edit_logourl: editorial.logo
+        });
+
+        (statement)? resolve() : reject(new Error("Couldn't insert data in database"));
+    });
+};
+
+exports.insert_auth = (author) => {
+    return new Promise( async (resolve, reject) => {
+        const statement = Author.create({
+            auth_fname: author.fname,
+            auth_lname: author.lname,
+            auth_bio: author.bio,
+            count_code: author.from,
+            auth_imageurl: author.image
         });
 
         (statement)? resolve() : reject(new Error("Couldn't insert data in database"));

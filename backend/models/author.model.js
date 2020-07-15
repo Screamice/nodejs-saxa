@@ -6,7 +6,8 @@ exports.Author = Database.define('author', {
     auth_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     auth_fname: {
         type: DataTypes.STRING(300),

@@ -18,7 +18,7 @@ Router.post('/register-editorial/', ctrl.new_editorial);
 
 
 // Add new autor to database.
-
+Router.post('/register-author/', ctrl.new_author);
 
 
 
