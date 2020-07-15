@@ -94,3 +94,36 @@ exports.new_author = (req, res) => {
         res.json({action: 'failed', message: 'data request is not correct'});
     }
 };
+
+exports.new_book = (req, res) => {
+    let book = {
+        isbn: req.body.isbn,
+        title: req.body.title,
+        synopsis: req.body.synopsis,
+        category: req.body.category,
+        editorial: req.body.editorial,
+        lang: req.body.lang,
+        image: null,
+        pages: req.body.pages,
+        published: req.body.published,
+        author: req.body.author
+    };
+
+    console.log(book);
+
+    if(book.isbn && book.title && book.synopsis && book.category && book.editorial && book.lang &&  book.pages && book.published){
+        ctrl.insert_book(book)
+        .then(() => {
+            res.status(200);
+            res.json({action: 'success', message: 'book has been registered'});
+        })
+        .catch(error => {
+            res.status(500);
+            res.json({action: 'failed', message: error.message});
+        });
+    }
+    else{
+        res.status(400);
+        res.json({action: 'failed', message: 'data request is not correct'});
+    }
+};

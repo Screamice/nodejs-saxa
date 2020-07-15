@@ -4,6 +4,12 @@ const { Book } = require('./book.model');
 const { Author } = require('./author.model');
 
 exports.Book_Author = Database.define('book_author', {
+    book_author_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true
+    },
     book_isbn: {
         type: DataTypes.STRING(100),
         allowNull: false,

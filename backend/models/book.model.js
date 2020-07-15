@@ -54,7 +54,7 @@ exports.Book = Database.define('book', {
         allowNull: false
     },
     book_published: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false
     }
 },
