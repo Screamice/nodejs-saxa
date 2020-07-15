@@ -14,18 +14,18 @@ CREATE TABLE country(
 );
 
 CREATE TABLE editorial(
-    edit_name VARCHAR(50) NOT NULL PRIMARY KEY,
+    edit_name VARCHAR(100) NOT NULL PRIMARY KEY,
     edit_website VARCHAR(500),
     edit_logourl VARCHAR(500)
 );
 
 CREATE TABLE category(
-    cat_id INTEGER NOT NULL PRIMARY KEY,
+    cat_id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
     cat_name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE author(
-    auth_id INTEGER NOT NULL PRIMARY KEY,
+    auth_id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
     auth_fname VARCHAR(300) NOT NULL,
     auth_lname VARCHAR(300) NOT NULL,
     auth_bio VARCHAR(2000) NOT NULL,

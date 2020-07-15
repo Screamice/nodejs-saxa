@@ -28,5 +28,43 @@ exports.new_student = (req, res) => {
 };
 
 exports.new_category = (req, res) => {
-    
+    if(req.body.cat_name){
+        ctrl.insert_cat(req.body.cat_name)
+        .then(() => {
+            res.status(200);
+            res.json({action: 'success', message: 'category has been registered'});
+        })
+        .catch(error => {
+            res.status(500);
+            res.json({action: 'failed', message: error.message});
+        });
+    }
+    else{
+        res.status(400);
+        res.json({action: 'failed', message: 'data request is not correct'});
+    }
+};
+
+exports.new_editorial = (req, res) => {
+    let editorial = {
+        name: req.body.name,
+        website: req.body.website,
+        logo: null
+    }
+
+    if(editorial.name && editorial.website){
+        ctrl.insert_edit(editorial)
+        .then(() => {
+            res.status(200);
+            res.json({action: 'success', message: 'editorial has been registered'});
+        })
+        .catch(error => {
+            res.status(500);
+            res.json({action: 'failed', message: error.message});
+        });
+    }
+    else{
+        res.status(400);
+        res.json({action: 'failed', message: 'data request is not correct'});
+    }
 };
