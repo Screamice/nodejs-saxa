@@ -11,7 +11,7 @@ Router.get('/available/', ctrl.get_books);
 Router.get('/description/:isbn', ctrl.get_by_isbn);
 
 // Search by title.
-Router.get('/', ctrl.get_by_title);
+Router.get('/', ctrl.search_by);
 
 // Search by category.
 Router.get('/', ctrl.get_by_category);

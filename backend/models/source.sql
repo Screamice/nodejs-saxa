@@ -14,7 +14,7 @@ CREATE TABLE country(
 );
 
 CREATE TABLE editorial(
-    edit_name VARCHAR(100) NOT NULL PRIMARY KEY,
+    edit_name VARCHAR(300) NOT NULL PRIMARY KEY,
     edit_website VARCHAR(500),
     edit_logourl VARCHAR(500)
 );
@@ -50,6 +50,7 @@ CREATE TABLE book(
 );
 
 CREATE TABLE book_author(
+    book_author_id INTEGER NOT NULL PRIMARY KEY,
     book_isbn VARCHAR(100) NOT NULL,
     auth_id INTEGER NOT NULL,
     FOREIGN KEY (book_isbn) REFERENCES book(book_isbn),
