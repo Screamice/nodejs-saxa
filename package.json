@@ -32,7 +32,7 @@
     "passport-local": "^1.0.0",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
-    "pug": "^3.0.0",
+    "pug": "^3.0.1",
     "sequelize": "^6.3.3",
     "uid-safe": "^2.1.5",
     "validator": "^13.0.0",
